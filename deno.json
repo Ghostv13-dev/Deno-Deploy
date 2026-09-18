@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --watch main.ts"
+  },
+  "imports": {
+    "grammy": "npm:grammy@^1.30.0",
+    "postgres": "npm:postgres@^3.4.5"
+  }
+}
