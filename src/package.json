@@ -1,0 +1,23 @@
+{
+  "name": "telegram-personal-bot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 execute personal-bot-db --local --file=./migrations/001_init.sql",
+    "db:migrate:remote": "wrangler d1 execute personal-bot-db --remote --file=./migrations/001_init.sql",
+    "register": "node --experimental-strip-types --env-file=.dev.vars scripts/register-webhook.ts",
+    "unregister": "node --experimental-strip-types --env-file=.dev.vars scripts/unregister-webhook.ts"
+  },
+  "dependencies": {
+    "gramio": "latest",
+    "@gramio/storage-cloudflare": "latest"
+  },
+  "devDependencies": {
+    "wrangler": "latest",
+    "typescript": "latest",
+    "@cloudflare/workers-types": "latest"
+  }
+}

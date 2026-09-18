@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "telegram-personal-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Secrets (TELEGRAM_BOT_TOKEN, TELEGRAM_WEBHOOK_SECRET, OWNER_ID) are NOT
+  // set here. Set them with `wrangler secret put <NAME>` — see README.
+  // For local dev, put them in a `.dev.vars` file (copy .dev.vars.example).
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "personal-bot-db",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+    }
+  ],
+
+  "kv_namespaces": [
+    {
+      "binding": "STATE",
+      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+    }
+  ],
+
+  "triggers": {
+    // Checks scheduled_tasks every minute so publishing works without
+    // requiring a new incoming Telegram update (spec section 16).
+    "crons": ["* * * * *"]
+  }
+}

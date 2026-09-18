@@ -1,0 +1,6 @@
+# Copy this file to .dev.vars for local development (wrangler dev reads it
+# automatically). Never commit the real .dev.vars file.
+
+TELEGRAM_BOT_TOKEN=123456789:AAExampleTokenReplaceMe
+TELEGRAM_WEBHOOK_SECRET=generate-a-long-random-string-here
+OWNER_ID=123456789
