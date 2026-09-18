@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "telegram-personal-bot",
+  "name": "deno-deploy",
   "main": "src/index.ts",
   "compatibility_date": "2026-09-01",
   "compatibility_flags": ["nodejs_compat"],
@@ -8,25 +8,24 @@
   // Secrets (TELEGRAM_BOT_TOKEN, TELEGRAM_WEBHOOK_SECRET, OWNER_ID) are NOT
   // set here. Set them with `wrangler secret put <NAME>` — see README.
   // For local dev, put them in a `.dev.vars` file (copy .dev.vars.example).
+"d1_databases": [{
+    "binding": "DB",
+    "database_name": "personal-database",
+    "database_id": "d1d956a6-4b87-4317-855e-9ae1fe76b87f"
+ }]
 
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "personal-bot-db",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
-    }
-  ],
-
-  "kv_namespaces": [
-    {
-      "binding": "STATE",
-      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
-    }
-  ],
-
+  "kv_namespaces": [{
+                    "binding": "KV_BINDING",
+                    "id": "c5b2efebf9e942f1b16cb58711ec2d03"
+                 }]
   "triggers": {
     // Checks scheduled_tasks every minute so publishing works without
     // requiring a new incoming Telegram update (spec section 16).
     "crons": ["* * * * *"]
   }
 }
+  // Add this to your wrangler.jsonc
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "fe6612e2d1014883932d007118e5945b",
